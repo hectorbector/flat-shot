@@ -6,13 +6,14 @@ using namespace std;
 class PlayerChar
 {
 public:
+    int id;
     sf::Sprite charSprite;
     sf::Vector2f playerPos;
     sf::Vector2f velocity;
     sf::Vector2f gunPos;
 
     PlayerChar();
-    PlayerChar(int x, int y);   //positions
+    PlayerChar(int startId, int x, int y);   //positions
     void update(sf::RenderWindow&, sf::Clock);
 
 private:

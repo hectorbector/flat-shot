@@ -27,13 +27,14 @@ Bullet::Bullet(PlayerChar & shooter, sf::Texture & bulletTex)
     tempPos.x += absPos.x;
     tempPos.y += absPos.y;
 
-    //set position, orientation, and speed
+    //set position, orientation, penetration, and speed
     bulletPos = tempPos;
     bulletSprite.setPosition(bulletPos);
     bulletSprite.setRotation(shooter.charSprite.getRotation());
     direction = sf::Vector2f(s, -c);
     startingSpeed = 1000;
     speed = startingSpeed;
+    penetration = 200;
 }
 
 bool Bullet::fly(GameMap & currentMap, list<PlayerChar> & players, sf::Clock clock)
@@ -63,7 +64,7 @@ bool Bullet::collide(GameMap & currentMap, list<PlayerChar> & players)
     }
     else if (currentMap.density[c.x][c.y] == -1)
     {
-        speed = 0;      //impassable
+        speed = 0;      //impenetrable
     }
 
     /*if (currentMap.density[c.x][c.y] == -2)
@@ -71,9 +72,10 @@ bool Bullet::collide(GameMap & currentMap, list<PlayerChar> & players)
         INSERT REFLECTION CODE HERE
     }*/
 
-    speed -= currentMap.density[c.x][c.y];  //slows based on density
+    if (penetration > 0) penetration -= currentMap.density[c.x][c.y];
+    else speed -= currentMap.density[c.x][c.y];  //slows based on density
 
-    if (speed < (startingSpeed/2.0))
+    if (speed < (startingSpeed/1.5))
     {
         return true;
     }

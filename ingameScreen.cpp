@@ -13,7 +13,7 @@
 using namespace std;
 
 
-IngameScreen::IngameScreen(int x, int y)
+IngameScreen::IngameScreen(int newId, int x, int y)
 {
     if (!bulletTex.loadFromFile("sprites/bullet.png"));
     bulletTex.setSmooth(true);
@@ -21,7 +21,9 @@ IngameScreen::IngameScreen(int x, int y)
     tickCount = 0;
     tickClock.restart();
     mainClock.restart();
-    players.emplace_front();
+    userId = newId;
+    players.emplace_front(userId, 300, 300);
+    userPlayer = &players.front();
 }
 
 void IngameScreen::update(sf::RenderWindow& window)
@@ -49,7 +51,7 @@ void IngameScreen::update(sf::RenderWindow& window)
 
 void IngameScreen::fire()
 {
-    bullets.emplace_front(players.front(), bulletTex);  //NEEDS TO FIRE FROM PLAYER
+    bullets.emplace_front(*userPlayer, bulletTex);  //fires from player pointed to by userPlayer
 }
 
 void IngameScreen::draw(sf::RenderWindow& window)

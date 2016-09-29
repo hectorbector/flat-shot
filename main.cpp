@@ -18,8 +18,8 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(1000, 800), "Shooter",sf::Style::Close);
 
-    //create IngameScreen
-    IngameScreen mainScreen(1000, 800);
+    //create IngameScreen using ID provided
+    IngameScreen mainScreen(1, 1000, 800);
 
     sf::View mainView(mainScreen.players.front().playerPos, sf::Vector2f(1000, 800));
 

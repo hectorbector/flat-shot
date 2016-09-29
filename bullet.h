@@ -14,6 +14,7 @@ public:
     sf::Vector2f direction;
     int startingSpeed;
     double speed;
+    int penetration;
     sf::Sprite bulletSprite;
 
     Bullet(PlayerChar&, sf::Texture&);    //arg is shooter

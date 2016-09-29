@@ -12,6 +12,7 @@ PlayerChar::PlayerChar()
 {
     if (!charTex.loadFromFile("sprites/manPlaceholder.png"));
     charTex.setSmooth(true);
+    id = 0;
     playerPos = sf::Vector2f(100,100);
     charSprite.setTexture(charTex);
     charSprite.setPosition(playerPos);
@@ -23,10 +24,11 @@ PlayerChar::PlayerChar()
     accelRun = 1600;
 }
 
-PlayerChar::PlayerChar(int x, int y)
+PlayerChar::PlayerChar(int startId, int x, int y)
 {
     if (!charTex.loadFromFile("sprites/manPlaceholder.png"));
     charTex.setSmooth(true);
+    id = startId;
     playerPos = sf::Vector2f(x, y);
     charSprite.setTexture(charTex);
     charSprite.setPosition(playerPos);

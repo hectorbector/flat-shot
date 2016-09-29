@@ -18,8 +18,10 @@ public:
     sf::Clock mainClock;
     sf::Clock tickClock;
     GameMap currentMap;
+    int userId;
+    PlayerChar * userPlayer;
 
-    IngameScreen(int, int); //x, y, size of map
+    IngameScreen(int newId, int x, int y); //x, y, size of map
     void update(sf::RenderWindow&);
     void draw(sf::RenderWindow&);
     void fire();
